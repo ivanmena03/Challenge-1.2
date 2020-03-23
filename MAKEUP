@@ -1,0 +1,50 @@
+// Created on Sun March 22 2020
+
+int r_motor = 2;
+int l_motor = 0;
+int r_bump = 8;
+int l = 9;
+int speed = 80;
+int slow_speed = 20;
+int l_reflect = 5;
+int r_reflect = 6;
+
+void forward() {																//Robot goes forward
+	motor(r_motor, speed);
+	motor(l_motor, speed);
+	}
+	
+void right() {																	//Robot turns right 
+	motor(l_motor, speed);
+	motor(r_motor, slow_speed);
+	}
+	
+void left(){
+    motor(r_motor,speed);
+    motor(l_motor, slow_speed);
+}
+
+int main()
+{
+	printf("Hello, World!\n");
+while(1){
+	right();
+	if(analog(r_reflect) > 0){
+	left(); 
+	break(); 
+	}
+	
+	}
+	while(1) {
+	if(analog(r_reflect) > 0){
+	left(); }
+	if(analog(l_reflect) > 0){
+	right(); }
+	if(digital(l_bump) > 0){
+    break();
+	}
+	
+	}
+	
+	return 0;
+}
